@@ -3,7 +3,7 @@ import numpy as np
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
-#from transformers import pipeline
+
 load_dotenv()
 api_key = os.getenv('OPENAI_API_KEY')
 client = OpenAI(
@@ -31,6 +31,5 @@ for model in models:
         message.append(completion.choices[0].message)
         model_list.append(model)
 
-print(message)
-#generator = pipeline("text-generation", model="gpt2")
-#generator("Hello, I'm a large language model")
+d = {'model': model_list, 'prompt': prompts, 'message': message}
+df = pd.DataFrame(data = d)
