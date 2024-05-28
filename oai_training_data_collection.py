@@ -1,13 +1,18 @@
 import pandas as pd
 import numpy as np 
 from openai import OpenAI
-
-client = OpenAI()
-project_id = 'proj_5JF0o5O7ktRRByRy75gKMxf9'
+from dotenv import load_dotenv
+import os
+#from transformers import pipeline
+load_dotenv()
+api_key = os.getenv('OPENAI_API_KEY')
+client = OpenAI(
+    api_key = api_key
+)
 
 # Load prompts here
 models = ["gpt-4o", "gpt-3.5-turbo"]
-prompts = np.read_csv()
+prompts = ['Can you explain what a lambda function is?']
 
 message = []
 model_list = [] 
@@ -26,4 +31,6 @@ for model in models:
         message.append(completion.choices[0].message)
         model_list.append(model)
 
-
+print(message)
+#generator = pipeline("text-generation", model="gpt2")
+#generator("Hello, I'm a large language model")
